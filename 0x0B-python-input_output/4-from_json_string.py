@@ -3,7 +3,7 @@
 import json
 
 
-def to_json_string(my_obj):
+def to_json_string(my_str):
     """
     Convert a Python object to its JSON representation.
 
@@ -13,4 +13,4 @@ def to_json_string(my_obj):
     Returns:
         str: JSON representation of the object
     """
-    return json.dumps(my_obj)
+    return json.loads(my_str)

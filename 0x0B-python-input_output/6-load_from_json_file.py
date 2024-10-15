@@ -10,5 +10,5 @@ def load_from_json_file(filename):
     Parameters:
         filename (str): Name of the file to save the JSON representation to
     """
-    with open(filename, 'r', encoding="utf-8") as file:
+    with open(filename, encoding="utf-8") as file:
         json.load(file)
