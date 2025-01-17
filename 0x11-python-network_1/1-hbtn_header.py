@@ -6,11 +6,11 @@
 """
 
 import sys
-import urllib.request
+from urllib.request import Request, urlopen
 
 if __name__ == "__main__":
     url = sys.argv[1]
+    req = Request(url)
 
-    req = urllib.request.Request(url)
-    with urllib.request.urlopen(request) as resp:
+    with urlopen(req) as resp:
         print(dict(resp.headers).get("X-Request-Id"))
