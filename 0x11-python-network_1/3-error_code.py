@@ -18,5 +18,5 @@ if __name__ == "__main__":
         with urlopen(req) as response:
             the_page = response.read().decode("utf-8")
             print(the_page)
-    except urllib.error.HTTPError as e:
-        print("Error code:", e.code)
+    except urllib.error.HTTPError as er:
+        print("Error code:", er.code)
