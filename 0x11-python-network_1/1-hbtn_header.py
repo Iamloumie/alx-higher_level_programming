@@ -1,25 +1,16 @@
 #!/usr/bin/python3
-"""a Python script that takes in a
-URL and an email,
-sends a POST request to the passed URL
-with the email as a parameter,
-and displays the body of the response
-(decoded in utf-8)
+"""A python script that:
+- takes in a URL
+- sends a request to the URL and displays
+- the value of the X-request-ID variable found in the header response
 """
 
-from urllib.request import Request, urlopen
-import urllib.parse
 import sys
-
+import urllib.request
 
 if __name__ == "__main__":
     url = sys.argv[1]
-    value = {"email": sys.argv[2]}
 
-    data = urllib.parse.urlencode(value)
-    data = data.encode("ascii")
-
-    req = Request(url, data)
-    with urlopen(req) as response:
-        the_page = response.read().decode("utf-8")
-        print(the_page)
+    req = urllib.request.Request(url)
+    with urllib.request.urlopen(request) as resp:
+        print(dict(resp.headers).get("X-Request-Id"))
