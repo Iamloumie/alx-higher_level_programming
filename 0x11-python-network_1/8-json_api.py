@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-"""Python script that sends a POST request to search for a user
-- based on a letter
+"""Python script that takes in URL:
+- sends a POST request to the http://0.0.0.0:5000/search_user (THE URL)
+- taking the letter as the parameter
+- using the sys and requests python packages
 """
 
 import sys
@@ -8,30 +10,19 @@ import requests
 
 
 if __name__ == "__main__":
-    # If no argument is provided, use empty string,
-    # Otherwise take first argument
-    q = "" if len(sys.argv) < 2 else sys.argv[1]
+    if len(sys.argv) == 1:
+        letter = ""
+    else:
+        letter = sys.argv[1]
 
-    # Send POST requests with the letter parameter
-    url = sys.argv[1]
-    payload = {"q": q}
+    q_data = {"q": letter}
+    req = requests.post("http://0.0.0.0:5000/search_user", data=q_data)
 
     try:
-        response = requests.post(url, data=payload)
-
-        # Try to parse JSON response
-        try:
-            json_response = response.json()
-
-            # check if the response is empty
-            if json_response:
-                print(
-                    "[{}] {}".format(json_response.get("id"), json_response.get("name"))
-                )
-            else:
-                print("No result")
-        except ValueError:
-            print("Not a valid JSON")
-
-    except requests.exceptions.RequestException:
-        print("No result")
+        response = req.json()
+        if response == {}:
+            print("No result")
+        else:
+            print("[{}] {}".format(response.get("id"), response.get("name")))
+    except ValueError:
+        print("Not a valid JSON")
