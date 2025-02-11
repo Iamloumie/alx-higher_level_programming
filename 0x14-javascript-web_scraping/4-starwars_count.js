@@ -1,10 +1,8 @@
 #!/usr/bin/node
-
 // This script sends a request to a website (an API) to get information
 // about Star Wars movies. Then, it counts how many times a specific
 // character (with "18" in their ID) appears in all the movies and
 // prints that number.
-
 const request = require("request");
 const url = process.argv[2];
 
